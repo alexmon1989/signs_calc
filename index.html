@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ua">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Калькулятор зборів за подачу заявок на знаки для товарів і послуг</title>
+  </head>
+  <body>
+  
+	<div class="container" id="app">
+		<h1 class="h3 text-center mt-4 mb-4">Калькулятор зборів за подачу заявок на знаки для товарів і послуг</h1>
+				
+		<form>
+		  <div class="form-group">
+			<label for="classes-count">Кількість класів МКТП</label>
+			<select class="form-control" id="classes-count" v-model="classesCount">
+			  <option v-for="i in CLASSES_COUNT_MAX" :value="i">{{i}}</option>
+			</select>
+			<div class="text-muted small">За кожний клас МКТП сплачується {{ ONE_CLASS_PRICE }} грн.</div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <div class="form-check">
+			  <input class="form-check-input" type="checkbox" v-model="colored" id="colored">
+			  <label class="form-check-label" for="colored">
+				Подання кольорового позначення <span class="text-muted">(+ {{ COLORED_PRICE }} грн.)</span>
+			  </label>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <div class="form-check">
+			  <input class="form-check-input" type="checkbox" v-model="ukraine" id="ukraine">
+			  <label class="form-check-label" for="ukraine">
+				Включення до знака позначення, що відображує назву держави "Україна" <span class="text-muted">(+ {{ UKRAINE_PRICE }} грн.)</span>
+			  </label>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <div class="form-check">
+			  <input class="form-check-input" type="checkbox" v-model="fewApplicants" id="few-applicants">
+			  <label class="form-check-label" for="few-applicants">
+				Подання заявки кількома заявниками  <span class="text-muted">(сплачується {{ fewApplicantsPerc }}% розміру зборів)</span>
+			  </label>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group text-right font-weight-bold lead">
+		    Загальна вартість: <span class="text-info">{{ totalPrice }} грн.</span>
+		  </div>
+
+          <div class="text-muted">Розрахунок здійснено з урахуванням <a href="http://zakon.rada.gov.ua/laws/show/1716-2004-%D0%BF" target="_blank">ПОСТАНОВИ від 23 грудня 2004 р. N 1716</a></div>		  
+		</form>
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
